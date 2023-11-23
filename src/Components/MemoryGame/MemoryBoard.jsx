@@ -8,6 +8,8 @@ const MemoryBoard = ({ images }) => {
   const [found, setFound] = useState([]);
 
   const sendSelection = (image, index) => {
+    console.log(image, index);
+
     firstChoice
       ? setSecondChoice([image, index])
       : setFirstChoice([image, index]);
@@ -37,7 +39,7 @@ const MemoryBoard = ({ images }) => {
         return (
           <CardComp
             image={e.img}
-            id={`${e.id}${i}`}
+            id={i}
             stat={
               (firstChoice
                 ? firstChoice[0] == e.img && firstChoice[1] == i

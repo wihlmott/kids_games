@@ -14,7 +14,7 @@ const CardComp = ({ image, id, stat, sendSelection }) => {
   };
   const selectedHandler = () => {
     if (stat) return;
-    sendSelection(image, id.charAt(id.length - 1));
+    sendSelection(image, id);
   };
 
   return (
