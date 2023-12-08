@@ -1,18 +1,32 @@
 import { Typography } from "@mui/material";
-import MemoryBoardGame from "./Components/MemoryGame";
+import Board from "./Components/Board";
 import { useState } from "react";
 import GameButton from "./Components/GameButton";
 
-const games = ["Memory Game"];
+const games = [
+  { title: "Memory Game", heading: "Find the matching tiles", gridSize: 3 },
+  {
+    title: "Match The Pieces",
+    heading: "Drag the matching tiles together",
+    gridSize: 3,
+  },
+];
 
 function App() {
   const [game, setGame] = useState(null);
   const [gridSize, setGridSize] = useState(3);
 
+  const [heading, setHeading] = useState("GAMES");
+
   const sendGameHandler = (e) => {
     setGame(e);
+
+    games.forEach((element) =>
+      element.title == e ? setHeading(element.heading) : ""
+    );
   };
-  const sendSizeHander = (e) => {
+
+  const sendSizeHander = () => {
     setGridSize((prev) => (prev == 6 ? 3 : prev + 1));
   };
 
@@ -25,27 +39,26 @@ function App() {
           minHeight: "100vh",
         }}
       >
-        {game == null && (
-          <Typography
-            variant="h4"
-            sx={{ justifyContent: "center", display: "flex" }}
-          >
-            GAMES:{" "}
-          </Typography>
-        )}
+        <Typography
+          variant="h4"
+          sx={{ justifyContent: "center", display: "flex" }}
+        >
+          {heading}
+        </Typography>
+
         {game == null &&
           games.map((gameName) => {
             return (
               <GameButton
-                key={gameName}
-                gameName={gameName}
-                gridSize={gridSize}
+                key={gameName.title}
+                gameName={gameName.title}
+                gridSize={gridSize} //needs to be set independently of other button
                 sendGameHandler={sendGameHandler}
                 sendSizeHander={sendSizeHander}
               />
             );
           })}
-        {game == "Memory Game" && <MemoryBoardGame size={gridSize} />}
+        {game != null && <Board size={gridSize} game={game} />}
       </div>
     </>
   );

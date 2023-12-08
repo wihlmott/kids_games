@@ -1,19 +1,21 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+
 import styles from "./CardComp.module.css";
 import { Grid } from "@mui/material";
 
-const CardComp = ({ image, id, stat, sendSelection }) => {
+const CardComp = ({ image, id, stat, sendSelection, game }) => {
   const screenSize = window.innerWidth;
 
   const cardStyles = {
-    width: screenSize > 400 ? "225px" : "25vw",
-    height: screenSize > 400 ? "260px" : "18vh",
+    width: screenSize > 500 ? "225px" : "25vw",
+    height: screenSize > 500 ? "260px" : "17vh",
     m: 1.5,
     display: "inline-block",
+    boxShadow: "2px 20px 30px rgba(0,0,0,0.4)",
   };
   const selectedHandler = () => {
-    if (stat) return;
+    if (stat && game == "Memory Game") return;
     sendSelection(image, id);
   };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CardComp from "./CardComp";
+import CardComp from "../Cards/CardComp";
 
 const MemoryBoard = ({ images }) => {
   const [firstChoice, setFirstChoice] = useState(null);
@@ -8,7 +8,9 @@ const MemoryBoard = ({ images }) => {
   const [found, setFound] = useState([]);
 
   const sendSelection = (image, index) => {
-    console.log(image, index);
+    // console.log(image, index);
+
+    if (secondChoice != null) return;
 
     firstChoice
       ? setSecondChoice([image, index])
@@ -51,6 +53,7 @@ const MemoryBoard = ({ images }) => {
             }
             key={i}
             sendSelection={sendSelection}
+            game="Memory Game"
           />
         );
       })}

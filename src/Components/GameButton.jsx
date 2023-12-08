@@ -23,11 +23,15 @@ const GameButton = ({
     boxShadow: "-0.5px -0.5px 4px 3px rgba(0,0,0,0.75) inset",
   };
 
-  const textStyles = { m: "auto", ml: 6, mr: -6 };
-
-  const setGameHandler = (e) => {
-    sendGameHandler(e.target.innerHTML);
+  const textStyles = {
+    m: "auto",
+    pl: 6,
+    pt: 2,
+    pb: 2,
+    mr: 0,
   };
+
+  const setGameHandler = () => sendGameHandler(gameName);
 
   const setGridSizeHandler = () => sendSizeHander(true);
 

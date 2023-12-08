@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const MemoryBoardContext = createContext({ images: [] });
+export const BoardContext = createContext({ images: [] });
